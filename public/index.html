@@ -10,11 +10,15 @@
   <body>
     <div id="div-login" style="display: none;">
       <!-- #region NavBar-->
-      <nav class="navbar navbar-dark bg-dark">
+      <nav class="navbar navbar-dark bg-primary"  style="background-color: #e3f2fd;">
         <span class="navbar-brand mb-0 h1">My books</span>
-        <span class="navbar-brand mb-0 h1" id="user-name" ></span>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="logout()">Exit</button>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button">Add Book</button>
+        <span class="navbar-brand mb-0 h1"  >
+          <span id="user-name"></span>
+          <button type="button" class="close" aria-label="Close" onclick="logout()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </span>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="button" onclick="openAdd()">Add Book</button>
       </nav> 
 
       <table class="table">
@@ -24,6 +28,8 @@
             <th scope="col">Title</th>
             <th scope="col">Author</th>
             <th scope="col">Year</th>
+            <th scope="col">User</th>
+            <th scope="col">User Mod</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -31,34 +37,59 @@
         </tbody>
       </table>
 
-      <input type="text" id="book-title" placeholder="Title">
-      <input type="text" id="book-author-name" placeholder="Author Name">
-      <input type="text" id="book-author-lastname" placeholder="Author Lastname">
-      <input type="text" id="book-year" placeholder="Year">
-      <button onclick="addBook()">Save</button>
+      <div class="modal" id="form-add" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="form-title"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="book-id">
+              <p>
+                <input type="text" id="book-title" placeholder="Title">
+              </p>
+              <p>
+                <input type="text" id="book-author-name" placeholder="Author Name">
+                <input type="text" id="book-author-lastname" placeholder="Author Lastname">  
+              </p>
+              <p>
+                <input type="number" id="book-year" placeholder="Year">
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addBook()" >Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     
     </div>
     <div id="div-logout" style="display:block;">
       <button onclick="login()">login with gmail</button>
     </div>
-    <div id="div-loading" style="display: none;">
+    <div id="div-loading" class="container" style="display: none;">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
-      </div>      
+      </div>
     </div>
 
-        <!-- update the version number as needed -->
-        <script  src="/__/firebase/7.20.0/firebase-app.js"></script>
-        <script  src="/__/firebase/7.20.0/firebase-auth.js"></script>
-        <!-- include only the Firebase features as you need -->
-        <script  src="/__/firebase/7.20.0/firebase-firestore.js"></script>
-        <!-- initialize the SDK after all desired features are loaded -->
-        <script  src="/__/firebase/init.js"></script>
+    <!-- update the version number as needed -->
+    <script  src="/__/firebase/7.20.0/firebase-app.js"></script>
+    <script  src="/__/firebase/7.20.0/firebase-auth.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script  src="/__/firebase/7.20.0/firebase-firestore.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script  src="/__/firebase/init.js"></script>
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
 
-        <script src="js/index.js?v=5666"></script>        
+    <script src="js/index.js?v=10"></script>        
   </body>
 </html>
