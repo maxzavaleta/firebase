@@ -93,13 +93,15 @@ function login(){
 
 firebase.auth().onAuthStateChanged(user=>{
     if(user){
+        userLogin=user
+        $('#div-navbar').show()
         $('#div-login').show()
         $('#div-logout').hide()
         $('#div-loading').hide()
-        console.log(user)
-        userLogin=user
-        $('#user-name').text(user.displayName)
+        $('#user-name').text(userLogin.displayName)
+        $("#user-image").attr("src",userLogin.photoURL)
     }else{
+        $('#div-navbar').hide()
         $('#div-login').hide()
         $('#div-logout').show()
         $('#div-loading').hide()
@@ -108,13 +110,14 @@ firebase.auth().onAuthStateChanged(user=>{
 
 $( document ).ready( ()=>{
     $('#div-loading').show()
+    $('#div-navbar').hide()
     $('#div-login').hide()
     $('#div-logout').hide()
 })
 
 function logout(){
     firebase.auth().signOut().then(()=>{
-
+        userLogin=null
     })
 }
 
